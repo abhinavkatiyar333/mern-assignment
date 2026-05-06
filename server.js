@@ -4,20 +4,28 @@ require("dotenv").config();
 
 const connectToDB = require("./config/db");
 
+// Routes
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
+const taskRoutes = require("./routes/taskRoutes");
 
 const app = express();
 
+// Connect Database
 connectToDB();
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
+// Routes
 app.use("/api/auth", authRoutes);
 
 app.use("/api/user", userRoutes);
 
+app.use("/api/tasks", taskRoutes);
+
+// Default Route
 app.get("/", (req, res) => {
   res.send("API Running...");
 });
