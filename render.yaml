@@ -1,0 +1,12 @@
+services:
+  - type: web_service
+    name: mern-task-backend
+    env: node
+    plan: starter
+    branch: main
+    buildCommand: npm install
+    startCommand: node server.js
+    env:
+      - key: NODE_ENV
+        value: production
+    autoDeploy: true
