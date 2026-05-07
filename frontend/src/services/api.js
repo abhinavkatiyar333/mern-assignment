@@ -1,18 +1,20 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
-  headers: {
-    'Content-Type': 'application/json',
-  },
+          baseURL:
+                    import.meta.env.VITE_API_URL ||
+                    "https://mern-backend-w1q3.onrender.com/api",
+          headers: {
+                    'Content-Type': 'application/json',
+          },
 });
 
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('taskManagerToken');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
+          const token = localStorage.getItem('taskManagerToken');
+          if (token) {
+                    config.headers.Authorization = `Bearer ${token}`;
+          }
+          return config;
 });
 
 export const register = (payload) => api.post('/auth/register', payload);
